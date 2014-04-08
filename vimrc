@@ -472,11 +472,12 @@ if has("gui_running")
 endif
 
 " theme主题
-set background=dark
+"set background=dark
 "colorscheme solarized
 set t_Co=256
 
 colorscheme molokai
+"colorscheme jellybeans
 "colorscheme desert
 
 "设置标记一列的背景颜色和数字一行颜色一致
@@ -497,5 +498,14 @@ highlight SpellLocal term=underline cterm=underline
 if has("autocmd")
     au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
     au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
 endif
+set sessionoptions=buffers,curdir,resize,folds,tabpages
+autocmd VimLeave * mks! $HOME/vimfiles/session/Session.vim
+autocmd VimEnter * :call s:ReadSession()  
+function s:ReadSession()  
+    let session_file = $HOME . "/vimfiles/session/Session.vim"  
+    if filereadable( session_file )  
+        execute "so " . session_file  
+    endif  
+endfunction
