@@ -198,12 +198,12 @@ set nrformats=
 
 
 " 相对行号      行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
+"set relativenumber number
+"au FocusLost * :set norelativenumber number
+"au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
+"autocmd InsertEnter * :set norelativenumber number
+"autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber number
@@ -211,7 +211,7 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+"nnoremap <C-n> :call NumberToggle()<cr>
 
 
 "==========================================
@@ -560,4 +560,27 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
+" vim-go custom mappings
+au FileType go nmap <leader>s <Plug>(go-implements)
+"au FileType go nmap <leader>i <Plug>(go-info)
+au FileType go nmap <leader>gd <Plug>(go-def)
+au FileType go nmap <leader>gv <Plug>(go-doc)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+"au FileType go nmap <leader>c <Plug>(go-coverage)
+"au FileType go nmap <leader>ds <Plug>(go-def-split)
+"au FileType go nmap <leader>dv <Plug>(go-def-vertical)
+"au FileType go nmap <leader>dt <Plug>(go-def-tab)
+"au FileType go nmap <leader>e <Plug>(go-rename)
+"
+" vim-go settings
+let g:go_fmt_command = "goimports"
 
+if has("autocmd")
+    au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+    au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    "    au VimLeave * silent execute "!gconftool-2 --type string
+    "    --set /apps/gnome-terminal/profiles/Default/cursor_shape
+    "    ibeam"
+endif

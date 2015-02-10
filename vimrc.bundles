@@ -504,3 +504,5 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 " nnoremap <F10> :QuickRun<cr>
 
 "------------------------------------------- end of configs --------------------------------------------
+Bundle 'fatih/vim-go'
+Bundle 'spf13/PIV'
