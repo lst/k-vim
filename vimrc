@@ -204,13 +204,13 @@ set nrformats=
 " 插入模式下用绝对行号, 普通模式下用相对
 "autocmd InsertEnter * :set norelativenumber number
 "autocmd InsertLeave * :set relativenumber
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber number
-  else
-    set relativenumber
-  endif
-endfunc
+"function! NumberToggle()
+"  if(&relativenumber == 1)
+"    set norelativenumber number
+"  else
+"    set relativenumber
+"  endif
+"endfunc
 "nnoremap <C-n> :call NumberToggle()<cr>
 
 
@@ -335,7 +335,7 @@ noremap L $
 
 "Map ; to : and save a million keystrokes
 " ex mode commands made easy 用于快速进入命令行
-nnoremap ; :
+"nnoremap ; :
 
 
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
@@ -448,7 +448,7 @@ nnoremap <leader>v V`}
 cmap w!! w !sudo tee >/dev/null %
 
 " kj 替换 Esc
-inoremap kj <Esc>
+"inoremap kj <Esc>
 
 " 滚动Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
@@ -538,11 +538,12 @@ if has("gui_running")
 endif
 
 " theme主题
-set background=dark
-colorscheme solarized
+"set background=dark
+"colorscheme solarized
 set t_Co=256
 
-"colorscheme molokai
+colorscheme molokai
+"colorscheme jellybeans
 "colorscheme desert
 
 "设置标记一列的背景颜色和数字一行颜色一致
