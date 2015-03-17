@@ -476,6 +476,7 @@ nnoremap U <C-r>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+nmap <silent> <leader>gg /\v<C-r>-<CR>
 "==========================================
 " FileType Settings  文件类型设置
 "==========================================
@@ -524,7 +525,7 @@ nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
 if has("gui_running")
     set guifont=Monaco:h14
     if has("gui_gtk2")   "GTK2
-        set guifont=Monaco\ 12, Monospace\ 12
+        set guifont=Monaco\ 12   ", Monospace\ 12
     endif
     set guioptions-=T
     set guioptions+=e
@@ -538,11 +539,11 @@ if has("gui_running")
 endif
 
 " theme主题
-"set background=dark
-"colorscheme solarized
+set background=dark
+colorscheme solarized
 set t_Co=256
 
-colorscheme molokai
+"colorscheme molokai
 "colorscheme jellybeans
 "colorscheme desert
 

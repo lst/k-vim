@@ -447,7 +447,7 @@ let python_highlight_all = 1
 " 1.install golang and install gocode 'go get github.com/nsf/gocode'
 " 2.make sure gocode in your path: `which gocode` (add $GOPATH/bin to you $PATH)
 Bundle 'Blackrush/vim-gocode'
-"Bundle 'fatih/vim-go.git'
+Bundle 'fatih/vim-go.git'
 
 "###### Ruby #########
 " Bundle 'vim-ruby/vim-ruby'
@@ -504,8 +504,6 @@ Bundle 'evanmiller/nginx-vim-syntax'
 " nnoremap <F10> :QuickRun<cr>
 
 "###### php #########
-Bundle 'lst/PIV'
 Bundle 'joonty/vdebug.git'
-"------------------------------------------- end of configs --------------------------------------------
-Bundle 'fatih/vim-go'
 Bundle 'spf13/PIV'
+"------------------------------------------- end of configs --------------------------------------------
