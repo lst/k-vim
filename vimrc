@@ -347,7 +347,7 @@ cnoremap <C-e> <End>
 " 搜索相关
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
+"map <space> /
 " 进入搜索Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
@@ -360,8 +360,8 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
 " switch # *
-nnoremap # *
-nnoremap * #
+"nnoremap # *
+"nnoremap * #
 
 " for # indent, python文件中输入新行时#号注释不切回行首
 autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
@@ -585,13 +585,13 @@ if has("gui_running")
 endif
 
 " theme主题
-set background=dark
-colorscheme solarized
+"set background=dark
+"colorscheme solarized
 set t_Co=256
 
-" colorscheme molokai
-" let g:molokai_original = 1
-" let g:rehash256 = 1
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
 "colorscheme desert
 
 "设置标记一列的背景颜色和数字一行颜色一致
@@ -614,7 +614,7 @@ au FileType go nmap <leader>s <Plug>(go-implements)
 "au FileType go nmap <leader>i <Plug>(go-info)
 au FileType go nmap <leader>gd <Plug>(go-def)
 au FileType go nmap <leader>gv <Plug>(go-doc)
-au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>r :GoRun<CR>
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>gt <Plug>(go-test)
 "au FileType go nmap <leader>c <Plug>(go-coverage)
@@ -624,8 +624,14 @@ au FileType go nmap <leader>gt <Plug>(go-test)
 "au FileType go nmap <leader>e <Plug>(go-rename)
 "
 " vim-go settings
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 let g:go_fmt_command = "goimports"
-
 if has("autocmd")
     au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
     au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
@@ -633,3 +639,5 @@ if has("autocmd")
     "    --set /apps/gnome-terminal/profiles/Default/cursor_shape
     "    ibeam"
 endif
+
+
