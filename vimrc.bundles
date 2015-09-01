@@ -95,7 +95,7 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 
 " 跳转到定义处, 分屏打开
-let g:ycm_goto_buffer_command = 'horizontal-split'
+"let g:ycm_goto_buffer_command = 'horizontal-split'
 " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
@@ -108,6 +108,7 @@ endif
 " new version
 if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
     let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+    "let g:ycm_global_ycm_extra_conf = "~/ycm_extra_conf.py"
 endif
 
 " 直接触发自动补全 insert模式下
@@ -588,6 +589,7 @@ Bundle 'evanmiller/nginx-vim-syntax'
 "###### php #########
 Bundle 'joonty/vdebug.git'
 Bundle 'spf13/PIV'
+Bundle 'tpope/vim-obsession'
 " ####### temp #######
 " python code format
 " autocmd FileType python nnoremap <leader>y :0,$!yapf --stdout-encoding=utf-8<Cr>

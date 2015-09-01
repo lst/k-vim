@@ -600,8 +600,8 @@ au FileType go nmap <leader>s <Plug>(go-implements)
 "au FileType go nmap <leader>i <Plug>(go-info)
 au FileType go nmap <leader>gd <Plug>(go-def)
 au FileType go nmap <leader>gv <Plug>(go-doc)
-"au FileType go nmap <leader>r :GoRun<CR>
-au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>r :GoRun<CR>
+"au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>gt <Plug>(go-test)
 "au FileType go nmap <leader>c <Plug>(go-coverage)
@@ -627,4 +627,4 @@ if has("autocmd")
     "    ibeam"
 endif
 
-
+inoremap {<CR> {<CR>}<ESC>O
