@@ -636,7 +636,8 @@ molokai主题
 
         进入左侧后的操作:
 
-                    回车/o, 打开
+                    O, 打开
+                    <C-o> 水平分屏打开
                     t - 在tab中打开(建议)
                     T - Like t but focus CtrlSF window instead of opened new tab.
                     q - Quit CtrlSF window.
@@ -899,6 +900,15 @@ src="https://raw.github.com/szw/vim-ctrlspace/master/gfx/screen_small.png" />
 
 详细 [更新日志](https://github.com/wklken/k-vim/blob/master/UPDATE_LOG.md)
 
+
+version 9.1 [待发布]
+
+    1. 增加 leader+w 保存文件
+
+    2. 解决在insert mode粘贴代码缩进错乱问题(以前需要:set paste . 即k-vim中F5快捷键)
+
+    3. add plugin for tmux: christoomey/vim-tmux-navigator
+
 version: 9.0
 
     1. 新增依赖ag(the_silver_searcher)
@@ -941,6 +951,7 @@ version: 9.0
         7.2 V 缩小选中范围
 
     8. 新增主题tomorrow
+
 
 ### TODO
 

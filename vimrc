@@ -454,6 +454,11 @@ vnoremap > >gv
 " y$ -> Y Make Y behave like other capitals
 map Y y$
 
+" auto jump to end of select
+" vnoremap <silent> y y`]
+" vnoremap <silent> p p`]
+" nnoremap <silent> p p`]
+
 " select all
 map <Leader>sa ggVG"
 
@@ -478,6 +483,8 @@ nnoremap <C-y> 2<C-y>
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
+" Quickly save the current file
+nnoremap <leader>w :w<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
@@ -493,6 +500,28 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 nmap <silent> <leader>gg /\v<C-r>-<CR>
+" Automatically set paste mode in Vim when pasting in insert mode
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
 "==========================================
 " FileType Settings  文件类型设置
 "==========================================
@@ -563,6 +592,15 @@ if has("gui_running")
     set t_Co=256
 endif
 
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
 " theme主题
 "set background=dark
 "colorscheme solarized
@@ -575,17 +613,16 @@ endif
 set background=dark
 set t_Co=256
 colorscheme solarized
-" colorscheme molokai
 " colorscheme Tomorrow-Night
 " colorscheme Tomorrow-Night-Bright
 " colorscheme desert
 
-"设置标记一列的背景颜色和数字一行颜色一致
+" 设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
-"" for error highlight，防止错误整行标红导致看不清
+" for error highlight，防止错误整行标红导致看不清
 highlight clear SpellBad
 highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
 highlight clear SpellCap
