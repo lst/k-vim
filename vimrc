@@ -232,16 +232,16 @@ set relativenumber number
 au FocusLost * :set norelativenumber number
 au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-"autocmd InsertEnter * :set norelativenumber number
-"autocmd InsertLeave * :set relativenumber
-"function! NumberToggle()
-"  if(&relativenumber == 1)
-"    set norelativenumber number
-"  else
-"    set relativenumber
-"  endif
-"endfunc
-"nnoremap <C-n> :call NumberToggle()<cr>
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber number
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
 
 " 防止tmux下vim的背景色显示异常
 " Refer: http://sunaku.github.io/vim-256color-bce.html
@@ -426,7 +426,7 @@ cnoremap <C-e> <End>
 
 " 搜索相关
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-"map <space> /
+map <space> /
 " 进入搜索Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
@@ -532,7 +532,7 @@ nnoremap <leader>v V`}
 cmap w!! w !sudo tee >/dev/null %
 
 " kj 替换 Esc
-"inoremap kj <Esc>
+inoremap kj <Esc>
 
 " 滚动Speed up scrolling of the viewport slightly
 nnoremap <C-e> 2<C-e>
@@ -654,14 +654,6 @@ endif
 
 
 " theme主题
-"set background=dark
-"colorscheme solarized
-"set t_Co=256
-
-"colorscheme molokai
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-"colorscheme desert
 set background=dark
 set t_Co=256
 
@@ -683,39 +675,6 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
-
-" vim-go custom mappings
-au FileType go nmap <leader>s <Plug>(go-implements)
-"au FileType go nmap <leader>i <Plug>(go-info)
-au FileType go nmap <leader>gd <Plug>(go-def)
-au FileType go nmap <leader>gv <Plug>(go-doc)
-au FileType go nmap <leader>r :GoRun<CR>
-"au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>gt <Plug>(go-test)
-"au FileType go nmap <leader>c <Plug>(go-coverage)
-"au FileType go nmap <leader>ds <Plug>(go-def-split)
-"au FileType go nmap <leader>dv <Plug>(go-def-vertical)
-"au FileType go nmap <leader>dt <Plug>(go-def-tab)
-"au FileType go nmap <leader>e <Plug>(go-rename)
-"
-" vim-go settings
-if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-let g:go_fmt_command = "goimports"
-if has("autocmd")
-    au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-    au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    "    au VimLeave * silent execute "!gconftool-2 --type string
-    "    --set /apps/gnome-terminal/profiles/Default/cursor_shape
-    "    ibeam"
-endif
-
 function! Imselect2abc()
     if has('nvim')
         call jobstart('im-select com.apple.keylayout.ABC')
