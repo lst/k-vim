@@ -156,7 +156,7 @@ set laststatus=2
 " 显示行号
 set number
 " 取消换行
-set nowrap
+"set nowrap
 
 " 括号配对情况, 跳转并高亮一下匹配的括号
 set showmatch
@@ -172,7 +172,7 @@ set incsearch
 " 搜索时忽略大小写
 set ignorecase
 " 有一个或以上大写字母时仍大小写敏感
-set smartcase
+"set smartcase
 
 " 代码折叠
 set foldenable
@@ -414,7 +414,7 @@ noremap L $
 
 
 " Map ; to : and save a million keystrokes 用于快速进入命令行
-nnoremap ; :
+"nnoremap ; :
 
 
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
@@ -442,8 +442,8 @@ nnoremap <silent> g* g*zz
 noremap <silent><leader>/ :nohls<CR>
 
 " switch # *
-nnoremap # *
-nnoremap * #
+"nnoremap # *
+"nnoremap * #
 
 " for # indent, python文件中输入新行时#号注释不切回行首
 autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
@@ -523,7 +523,7 @@ vnoremap <leader>y "+y
 map <Leader>sa ggVG
 
 " 选中并高亮最后一次插入的内容
-nnoremap gv `[v`]
+"nnoremap gv `[v`]
 
 " select block
 nnoremap <leader>v V`}
@@ -577,7 +577,7 @@ autocmd BufRead,BufNewFile *.part set filetype=html
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 
 " disable showmatch when use > in php
-au BufWinEnter *.php set mps-=<:>
+"au BufWinEnter *.php set mps-=<:>
 
 
 
@@ -657,8 +657,8 @@ endif
 set background=dark
 set t_Co=256
 
-colorscheme solarized
-" colorscheme molokai
+"colorscheme solarized
+colorscheme molokai
 
 
 " 设置标记一列的背景颜色和数字一行颜色一致
@@ -675,3 +675,11 @@ highlight clear SpellRare
 highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
+function! Imselect2abc()
+    if has('nvim')
+        call jobstart('im-select com.apple.keylayout.ABC')
+    else
+        call job_start(['im-select', 'com.apple.keylayout.ABC'])
+    endif
+endfunction
+autocmd InsertLeave * call Imselect2abc()
